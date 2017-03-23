@@ -1,0 +1,50 @@
+<html ng-app="listaDeUsuario">
+<head>
+  <meta charset="utf-8" />
+  <title>Lista De Usuario</title>
+  <link rel="stylesheet" href="lib\bootstrap\css\bootstrap.min.css" >
+  <link rel="stylesheet" href="lib/app.css" >
+  <script src="lib\angular\angular.js"></script>
+
+  <script>
+    angular.module("listaDeUsuario",[]);
+    angular.module("listaDeUsuario").controller("listaDeUsuarioCrtl", function ($scope){
+     $scope.app = "Lista De Usuario";
+     $scope.usuarios=[
+       {matricula:1 , nome:"Pedro Prado",email:"pedro.prado@linx.com.br"},
+       {matricula:2 , nome:"Marcio Piva",email:"marcio.piva@linx.com.br"},
+       {matricula:3 , nome:"Camila",email:"camila@linx.com.br"}
+     ];
+     $scope.adicionarUsuario = function(usuario){
+       $scope.usuarios.push(angular.copy(usuario));
+       delete $scope.usuario;
+     };
+    });
+  </script>
+</head>
+<body ng-controller="listaDeUsuarioCrtl">
+  <div class ="jumbotron">
+  <h3><img src="linxlog.jpg"/>{{app}}</h3>
+    <table class="table table-striped">
+      <tr>
+        <th>Matrilcula </th>
+        <th>Nome </th>
+        <th>email</th>
+      </tr>
+      <tr ng-repeat="usuario in usuarios">
+        <td>{{usuario.matricula}}</td>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.email}}</td>
+      </tr>
+    </table>
+    <hr />
+
+  <p>
+    Matricula:  <input class="form-control" type="text" ng-model="usuario.matricula" />
+      Nome:<input class="form-control" type="text" ng-model = "usuario.nome" />
+    Email:  <input class="form-control" type="text" ng-model="usuario.email" />
+    <button class="btn btn-primary btn-block" ng-click="adicionarUsuario(usuario)">Adicionar Usuario</button>
+    {{contato}}
+  </p>
+</body>
+</html>
